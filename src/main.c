@@ -8,7 +8,6 @@
 TaskBlock taskList[100];
 int taskCount = 0;
 
-// const char* colors[] = {ANSI_COLOR_RED, ANSI_COLOR_GREEN, ANSI_COLOR_YELLOW, ANSI_COLOR_BLUE, ANSI_COLOR_MAGENTA, ANSI_COLOR_CYAN};
 const char* colors[] = {
     C_RED,
     C_ORANGE,
@@ -76,6 +75,7 @@ int main(int argc, char *argv[]) {
 
     // Scheduler'ı başlat
     vSchedulerInit();
+    vSchedulerStart();
     
     // FreeRTOS Kernel'ı başlat (Bu noktadan sonra kontrol FreeRTOS'a geçer)
     vTaskStartScheduler();

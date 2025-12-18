@@ -74,7 +74,7 @@ void vDispatcherTask(void *pvParameters) {
                     // Rengi ID'ye göre al
                     const char* color = getTaskColor(taskList[i].id);
                     
-                    printf("%s%d.0000 sn proses zamanasimi\t(id:%04d \toncelik:%d \tkalan sure:%d sn)%s\n", 
+                    printf("%s%d.0000 sn proses zamanasimi\t\t(id:%04d \toncelik:%d \tkalan sure:%d sn)%s\n", 
                            color, globalTime, taskList[i].id, 
                            taskList[i].currentPriority, taskList[i].remainingTime, C_RESET);
                 }
@@ -157,7 +157,7 @@ void vProcessorTask(void *pvParameters) {
             // Rengi ID'ye göre al
             const char* color = getTaskColor(currentTaskPtr->id);
 
-            printf("%s%d.0000 sn proses yurutuluyor\t(id:%04d \toncelik:%d \tkalan sure:%d sn)%s\n", 
+            printf("%s%d.0000 sn proses yurutuluyor\t\t(id:%04d \toncelik:%d \tkalan sure:%d sn)%s\n", 
                    color, globalTime + 1, currentTaskPtr->id, 
                    currentTaskPtr->currentPriority, currentTaskPtr->remainingTime, C_RESET);
 
@@ -182,7 +182,7 @@ void vProcessorTask(void *pvParameters) {
                 } else {
                     currentTaskPtr->currentPriority++;
                     
-                    printf("%s%d.0000 sn proses askida\t\t(id:%04d \toncelik:%d \tkalan sure:%d sn)%s\n", 
+                    printf("%s%d.0000 sn proses askida \t\t(id:%04d \toncelik:%d \tkalan sure:%d sn)%s\n", 
                            color, globalTime, currentTaskPtr->id, 
                            currentTaskPtr->currentPriority, currentTaskPtr->remainingTime, C_RESET);
 
@@ -204,7 +204,9 @@ void vSchedulerInit(void) {
     userQueue1 = xQueueCreate(100, sizeof(int));
     userQueue2 = xQueueCreate(100, sizeof(int));
     userQueue3 = xQueueCreate(100, sizeof(int));
+}
 
+void vSchedulerStart(void){
     xTaskCreate(vDispatcherTask, "Dispatcher", configMINIMAL_STACK_SIZE * 4, NULL, 4, &xDispatcherHandle);
     xTaskCreate(vProcessorTask, "Processor", configMINIMAL_STACK_SIZE * 4, NULL, 3, &xProcessorHandle);
 }
