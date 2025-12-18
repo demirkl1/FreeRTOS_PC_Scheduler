@@ -75,6 +75,7 @@ int main(int argc, char *argv[]) {
 
     // Scheduler'ı başlat
     vSchedulerInit();
+    vSchedulerStart();
     
     // FreeRTOS Kernel'ı başlat (Bu noktadan sonra kontrol FreeRTOS'a geçer)
     vTaskStartScheduler();
